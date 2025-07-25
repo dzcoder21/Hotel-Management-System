@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid black;
+            margin-left: 100px;
+            width: 1000px;
+
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            float: center;
+            margin-left: 500px;
+        }
+        /* Styling for form labels */
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+            color: #555;
+        }
+
+        /* Styling for input fields */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Styling for the submit button */
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Hover effect for the button */
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Styling for messages (success or error) */
+        .message {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #d9534f;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>Hotel Management System</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#booking">Booking</a></li>
+                    <li><a href="#billing">Billing</a></li>
+                    <li><a href="#guests">Guests</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <section id="home" class="home-section">
+        <div class="container">
+            <h2>Welcome to Our Hotel</h2>
+            <p>Experience luxury and comfort with our premium services. Book your room now!</p>
+            <a href="#booking" class="btn">Book Now</a>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="booking-section">
+        <div class="container">
+            <h2>Book a Room</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="guestName">Guest Name:</label>
+                    <input type="text" id="guestName" name="guestName" required>
+                </div>
+                <div class="form-group">
+                    <label for="mobileNo">Mobile Number:</label>
+                    <input type="text" id="mobileNo" name="mobileNo" required>
+                </div>
+                <div class="form-group">
+                    <label for="roomType">Room Type:</label>
+                    <select id="roomType" name="roomType" required>
+                        <option value="Single">Single</option>
+                        <option value="Double">Double</option>
+                        <option value="Suite">Suite</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="checkInDate">Check-in Date:</label>
+                    <input type="date" id="checkInDate" name="checkInDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkOutDate">Check-out Date:</label>
+                    <input type="date" id="checkOutDate" name="checkOutDate" required>
+                </div>
+                <button type="submit" class="btn">Submit Booking</button>
+            </form>
+
+            <!-- Display Generated Booking Info -->
+            <div id="bookingResult" class="result-box"></div>
+        </div>
+    </section>
+
+    <!-- Billing Section -->
+
+    <section id="billing" class="billing-section">
+        <div class="container">
+            <h2>Generate Bill</h2>
+            <form id="billingForm">
+                <div class="form-group">
+                    <label for="bookingID">Booking ID:</label>
+                    <input type="text" id="bookingID" name="bookingID" required>
+                </div>
+                <button type="submit" class="btn">Generate Bill</button>
+            </form>
+
+            <!-- Display Generated Billing Info -->
+            <div id="billingResult" class="result-box"></div>
+        </div>
+    </section>
+     <!--============++++++++++++  Add Guests ++++++++++++==========-->
+     <div class="form-container">
+        <h2>Add Guest</h2>
+        <form id="guestForm">
+            <label for="guestName">Guest Name:</label>
+            <input type="text" id="guestName" required>
+
+            <label for="mobileNo">Mobile Number:</label>
+            <input type="text" id="mobileNo" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" required>
+
+            <button type="submit">Add Guest</button>
+        </form>
+        <div class="message"></div>
+    </div>
+
+
+    <!-- Guests Section -->
+
+        <div class="guest-list">
+            <h2 style="margin-left: 100px;">Guest List</h2>
+            <table id="guestTable">
+                <thead>
+                    <tr>
+                        <th>Guest Name</th>
+                        <th>Mobile Number</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Guest list will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    
+        <a href="#home" style="margin-left:100px;">Go Back to Home</a>
+
+        <script>
+            // Include your JS search and sort functions here (as provided previously)
+
+                // Search function to filter guests
+                function searchGuests() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("searchInput");
+                    filter = input.value.toLowerCase();
+                    table = document.getElementById("guestTable");
+                    tr = table.getElementsByTagName("tr");
+        
+                    // Loop through all table rows, and hide those that don't match the search query
+                    for (i = 1; i < tr.length; i++) {
+                        tr[i].style.display = "none";
+                        td = tr[i].getElementsByTagName("td");
+                        for (var j = 0; j < td.length; j++) {
+                            if (td[j]) {
+                                txtValue = td[j].textContent || td[j].innerText;
+                                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+        // Get the form and the guest table
+const guestForm = document.getElementById('guestForm');
+const guestTable = document.getElementById('guestTable').getElementsByTagName('tbody')[0];
+
+// Function to add guest to the table
+function addGuestToTable(guestName, mobileNo, address) {
+    const row = guestTable.insertRow();  // Insert a new row
+
+    // Insert cells and add data to them
+    const nameCell = row.insertCell(0);
+    const mobileCell = row.insertCell(1);
+    const addressCell = row.insertCell(2);
+
+    nameCell.textContent = guestName;
+    mobileCell.textContent = mobileNo;
+    addressCell.textContent = address;
+}
+
+// Event listener for form submission
+guestForm.addEventListener('submit', function(event) {
+    event.preventDefault();  // Prevent page refresh
+
+    // Get the input values from the form
+    const guestName = document.getElementById('guestName').value;
+    const mobileNo = document.getElementById('mobileNo').value;
+    const address = document.getElementById('address').value;
+
+    // Add guest to the table
+    addGuestToTable(guestName, mobileNo, address);
+
+    // Generate a unique guest ID
+    const guestID = generateGuestID();
+
+    // Create a guest object (you can send it to the back-end using fetch or AJAX)
+    const guest = {
+        guestID: guestID,
+        guestName: guestName,
+        mobileNo: mobileNo,
+        address: address
+    };
+
+    console.log('New Guest:', guest);
+
+    // Display a success message
+    alert(`Guest Added Successfully!\nGuest ID: ${guestID}`);
+
+    // Clear the form inputs
+    guestForm.reset();
+});
+
+// Function to generate a unique guest ID
+function generateGuestID() {
+    // You can use the current timestamp combined with a random number to ensure uniqueness
+    const timestamp = Date.now();  // Current time in milliseconds since 1970
+    const randomNum = Math.floor(Math.random() * 1000);  // Random number between 0 and 999
+    return `GUEST-${timestamp}-${randomNum}`;
+}
+
+            
+        </script>
+    
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Hotel Management System | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

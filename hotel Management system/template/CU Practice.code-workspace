@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../CU Practice"
+		},
+		{
+			"path": "../../GrubDelivery-OnlineRestaurant"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "CU Practice"
+	}
+}
